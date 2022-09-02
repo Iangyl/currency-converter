@@ -1,4 +1,4 @@
-# Getting Started Template
+# Currency converter app
 
 ## Available Scripts
 
