@@ -1,5 +1,8 @@
 # Currency converter app
 
+This App was created with NBU API.
+More universal API is payable, so I made it through NBU API with UAH only.
+
 ## Available Scripts
 
 In the project directory, you can run:
