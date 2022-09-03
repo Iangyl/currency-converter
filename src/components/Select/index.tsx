@@ -1,7 +1,9 @@
 import React, { FC, useEffect, useState } from "react";
 import { ISelect } from "./index.types";
-import styles from "./index.module.sass";
 import { ChosenValue } from "components/Converter/index.types";
+import arrow from "assets/icons/right-filled.svg";
+
+import styles from "./index.module.sass";
 
 const Select: FC<ISelect> = ({
   value: inputValue,
@@ -44,6 +46,16 @@ const Select: FC<ISelect> = ({
           name="select"
           value={name}
           type="text"
+          placeholder="Choose currency"
+        />
+        <img
+          className={styles.arrow}
+          src={arrow}
+          style={
+            isOpen
+              ? { transform: "rotate(90deg)" }
+              : { transform: "rotate(0deg)" }
+          }
         />
       </label>
       {isOpen && (
