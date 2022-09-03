@@ -32,7 +32,11 @@ const Converter: FC<Record<string, IExchangeRateData[] | undefined>> = ({
     if (!chosenValue) {
       setError(true);
     } else {
-      if (!value) setInputsValue({ ...inputsValue, [name]: "" });
+      if (!value)
+        setInputsValue({
+          inputFirst: "",
+          inputSecond: "",
+        });
       else if (value && Number(value) && value !== "e" && isNaN(value)) {
         const keys = Object.keys(inputsValue);
         if (keys[0] !== name) {
