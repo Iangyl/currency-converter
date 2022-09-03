@@ -9,12 +9,16 @@
 .selectItems
   position: absolute
   width: 250px
+  max-height: 300px
+  overflow-y: auto
   background-color: #e3eeef
   border: 1px solid var(--border_1-col)
   margin-top: 10px
   .selectItem
     padding: 5px 10px
     border-bottom: 1px solid var(--border_1-col)
+    &:hover
+      cursor: pointer
   &:after
     content: ""
     position: absolute

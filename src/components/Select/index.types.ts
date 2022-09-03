@@ -1,3 +1,5 @@
+import { ChosenValue } from "components/Converter/index.types";
+
 export interface IOption {
   name: string;
   value: string | number;
@@ -10,7 +12,7 @@ export interface ISelect {
   defaultValue?: string;
   label?: string;
   isOpen?: boolean;
-  onChange: (value: string) => void;
+  onChange: (value: ChosenValue | undefined) => void;
   onClick?: () => void;
   items?: IOption[];
   style?: Record<string, string | number>;

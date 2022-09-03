@@ -8,7 +8,7 @@ function App() {
   const data = useNbuData();
   return (
     <PageWrapper data={data}>
-      <Converter />
+      <Converter data={data} />
     </PageWrapper>
   );
 }

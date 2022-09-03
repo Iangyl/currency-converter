@@ -1,6 +1,7 @@
 import React, { FC, useEffect, useState } from "react";
 import { ISelect } from "./index.types";
 import styles from "./index.module.sass";
+import { ChosenValue } from "components/Converter/index.types";
 
 const Select: FC<ISelect> = ({
   value: inputValue,
@@ -16,10 +17,12 @@ const Select: FC<ISelect> = ({
     ? defaultValue
     : "";
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [value, setValue] = useState<string>(selectValue);
+  const [name, setName] = useState<string>(selectValue);
+  const [value, setValue] = useState<ChosenValue>();
 
-  const handleOptionClick = (val: string) => {
+  const handleOptionClick = (val: ChosenValue) => {
     setIsOpen(false);
+    setName(val.name);
     setValue(val);
   };
 
@@ -39,7 +42,7 @@ const Select: FC<ISelect> = ({
         <input
           className={styles.selectField}
           name="select"
-          value={value}
+          value={name}
           type="text"
         />
       </label>
@@ -49,7 +52,7 @@ const Select: FC<ISelect> = ({
             <div
               key={item.name}
               className={`${styles.selectItem} ${item.className ?? ""}`}
-              onClick={() => handleOptionClick(item.name)}
+              onClick={() => handleOptionClick(item)}
             >
               {item.name}
             </div>
