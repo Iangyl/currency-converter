@@ -25,9 +25,10 @@
       "@styles/*": ["src/styles/*"],
       "@pages/*": ["src/pages/*"],
       "@queries/*": ["src/api"],
-      "@components/*": ["src/common/components/*"],
-      "@assets/*": ["src/common/assets"],
-      "@modules/*": ["src/common/modules"],
+      "@components/*": ["src/components/*"],
+      "@hooks/*": ["src/hooks/*"],
+      "@lib/*": ["src/lib/*"],
+      "@assets/*": ["src/assets/*"],
     }
   },
   "include": [
