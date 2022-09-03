@@ -4,6 +4,8 @@ const words = {
   },
   converter: {
     selectLabel: "You chose:",
+    uahLabel: "UAH",
+    error: "Choose currency, please!",
   },
 };
 

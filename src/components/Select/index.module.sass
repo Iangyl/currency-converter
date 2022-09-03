@@ -5,16 +5,29 @@
     border: 1px solid var(--border_1-col)
     padding: 5px
     border-radius: 5px
+    &:hover
+      cursor: pointer
+  .arrow
+    position: absolute
+    margin-left: -25px
+    width: 24px
+    transform: rotate(90deg)
+    &:hover
+      cursor: pointer
 
 .selectItems
   position: absolute
   width: 250px
+  max-height: 300px
+  overflow-y: auto
   background-color: #e3eeef
   border: 1px solid var(--border_1-col)
   margin-top: 10px
   .selectItem
     padding: 5px 10px
     border-bottom: 1px solid var(--border_1-col)
+    &:hover
+      cursor: pointer
   &:after
     content: ""
     position: absolute

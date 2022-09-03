@@ -1,5 +1,8 @@
 import React, { FC, useEffect, useState } from "react";
 import { ISelect } from "./index.types";
+import { ChosenValue } from "components/Converter/index.types";
+import arrow from "assets/icons/right-filled.svg";
+
 import styles from "./index.module.sass";
 
 const Select: FC<ISelect> = ({
@@ -16,10 +19,12 @@ const Select: FC<ISelect> = ({
     ? defaultValue
     : "";
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [value, setValue] = useState<string>(selectValue);
+  const [name, setName] = useState<string>(selectValue);
+  const [value, setValue] = useState<ChosenValue>();
 
-  const handleOptionClick = (val: string) => {
+  const handleOptionClick = (val: ChosenValue) => {
     setIsOpen(false);
+    setName(val.name);
     setValue(val);
   };
 
@@ -39,8 +44,18 @@ const Select: FC<ISelect> = ({
         <input
           className={styles.selectField}
           name="select"
-          value={value}
+          value={name}
           type="text"
+          placeholder="Choose currency"
+        />
+        <img
+          className={styles.arrow}
+          src={arrow}
+          style={
+            isOpen
+              ? { transform: "rotate(90deg)" }
+              : { transform: "rotate(0deg)" }
+          }
         />
       </label>
       {isOpen && (
@@ -49,7 +64,7 @@ const Select: FC<ISelect> = ({
             <div
               key={item.name}
               className={`${styles.selectItem} ${item.className ?? ""}`}
-              onClick={() => handleOptionClick(item.name)}
+              onClick={() => handleOptionClick(item)}
             >
               {item.name}
             </div>
