@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useMemo, useState } from "react";
+import React, { FC, useMemo, useState } from "react";
 import Input from "components/Input";
 import styles from "./index.module.sass";
 import Select from "components/Select";
@@ -19,6 +19,7 @@ const Converter: FC<Record<string, IExchangeRateData[] | undefined>> = ({
 
   const handleSelectChange = (value: ChosenValue | undefined) => {
     console.log("onSelectChange: ", value);
+    setError(false);
     setInputsValue({
       inputFirst: "",
       inputSecond: "",
@@ -36,10 +37,18 @@ const Converter: FC<Record<string, IExchangeRateData[] | undefined>> = ({
         const keys = Object.keys(inputsValue);
         if (keys[0] !== name) {
           const anotherValue = Number(value) / Number(chosenValue.value);
-          setInputsValue({ ...inputsValue, [name]: value, [keys[0]]: anotherValue });
+          setInputsValue({
+            ...inputsValue,
+            [name]: value,
+            [keys[0]]: anotherValue,
+          });
         } else {
           const anotherValue = Number(value) * Number(chosenValue.value);
-          setInputsValue({ ...inputsValue, [name]: value, [keys[1]]: anotherValue });
+          setInputsValue({
+            ...inputsValue,
+            [name]: value,
+            [keys[1]]: anotherValue,
+          });
         }
       }
     }
@@ -57,12 +66,13 @@ const Converter: FC<Record<string, IExchangeRateData[] | undefined>> = ({
   return (
     <div className={styles.converter}>
       <div className={styles.left}>
-        <div>{chosenValue?.name ?? ""}</div>
+        <div>{chosenValue?.name ?? "Choose currency"}</div>
         <Input
           name="inputFirst"
           value={inputsValue.inputFirst}
           onChange={handleInputsChange}
           placeholder="0"
+          style={error ? { borderColor: "var(--error-col)" } : {}}
         />
         <Select
           items={items}
@@ -70,6 +80,7 @@ const Converter: FC<Record<string, IExchangeRateData[] | undefined>> = ({
           label={words.converter.selectLabel}
           style={{ marginTop: 16, display: "block" }}
         />
+        <div className={styles.error}>{error && words.converter.error}</div>
       </div>
       <div className={styles.center}>=</div>
       <div className={styles.right}>
@@ -79,6 +90,7 @@ const Converter: FC<Record<string, IExchangeRateData[] | undefined>> = ({
           value={inputsValue.inputSecond}
           onChange={handleInputsChange}
           placeholder="0"
+          style={error ? { borderColor: "var(--error-col)" } : {}}
         />
       </div>
     </div>
