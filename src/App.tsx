@@ -8,7 +8,6 @@ function App() {
   const data = useNbuData();
   return (
     <PageWrapper data={data}>
-      Hello World!
       <Converter />
     </PageWrapper>
   );
