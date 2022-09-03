@@ -1,18 +1,27 @@
-import React, { ReactNode } from "react";
-import { mockHeaderRate } from "./mockData";
+import React, { ReactNode, useMemo } from "react";
 import appIcon from "../../assets/icons/iconmonstr-coin-7.svg";
 import styles from "./index.module.sass";
 import words from "assets/translate/words";
 import HeaderCurrencyItem from "components/HeaderCurrencyItem";
+import { IExchangeRateData } from "hooks/useNbuData/nbuApi.types";
 
 const PageWrapper = ({
   children,
   data,
 }: {
   children: ReactNode;
-  data: unknown;
+  data: IExchangeRateData[] | undefined;
 }) => {
-  console.log("pageWrapper", data);
+  const usdAndEuValues = useMemo(() => {
+    const newArray = [] as IExchangeRateData[];
+    data?.forEach((item: IExchangeRateData) => {
+      if (item.cc === "USD" || item.cc === "EUR") {
+        newArray.push(item);
+      }
+    });
+
+    return newArray;
+  }, [data]);
   return (
     <div className={styles.wrapper}>
       <header>
@@ -22,11 +31,11 @@ const PageWrapper = ({
             {words.header.appName}
           </div>
           <div className={styles.currencies}>
-            {mockHeaderRate.map((item) => (
+            {usdAndEuValues.map((item) => (
               <HeaderCurrencyItem
-                key={item.id}
-                currency={item.name}
-                value={item.value}
+                key={item.r030}
+                currency={item.cc}
+                value={item.rate.toFixed(2)}
               />
             ))}
           </div>
