@@ -18,7 +18,6 @@ const Converter: FC<Record<string, IExchangeRateData[] | undefined>> = ({
   const [error, setError] = useState<boolean>(false);
 
   const handleSelectChange = (value: ChosenValue | undefined) => {
-    console.log("onSelectChange: ", value);
     setError(false);
     setInputsValue({
       inputFirst: "",
